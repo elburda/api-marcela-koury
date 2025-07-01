@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import './Nav.scss';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
@@ -35,11 +35,17 @@ const Nav = () => {
                         Pedidos
                     </a>
                 </li>
-                <li>
-                    <NavLink to="/articulos" className={({ isActive }) => isActive ? 'active' : ''}>
-                        Artículos
-                    </NavLink>
-                </li>
+
+                {/* Mostrar "Artículos" solo si el usuario es admin */}
+                {user?.rol === 'admin' && (
+                    <li>
+                        <NavLink to="/articulos" className={({ isActive }) => isActive ? 'active' : ''}>
+                            Artículos
+                        </NavLink>
+                    </li>
+                )}
+
+                {/* Mostrar "Crear Artículo" solo si el usuario es admin */}
                 {user?.rol === 'admin' && (
                     <li>
                         <NavLink to="/articulos/crear" className={({ isActive }) => isActive ? 'active' : ''}>

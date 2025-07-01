@@ -27,17 +27,32 @@ export const createPedido = async (datos) => {
     });
     return res.data;
 };
-
-// Eliminar un pedido
-export const deletePedido = async (id) => {
+export const eliminarPedido = async (id) => {
     const token = localStorage.getItem('token');
+
+    if (!token) {
+        throw new Error('Token no encontrado en localStorage');
+    }
+
     const res = await api.delete(`/pedidos/${id}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+
+    return res.data;
+};
+
+const getAuthHeaders = () => {
+    const token = localStorage.getItem('token');
+    return {
         headers: {
         Authorization: `Bearer ${token}`
         }
-    });
-    return res.data;
+    };
 };
+
+
 
 // Actualizar estado de un pedido
 export const updatePedido = async (id, datos) => {

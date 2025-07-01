@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { getMisPedidos, deletePedido } from '../../services/pedidosService';
+import { getMisPedidos, eliminarPedido } from '../../services/pedidosService';
 import Button from '../../components/Button';
 import Nav from '../../components/Nav';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Toast from '../../components/Toast';
+import Swal from 'sweetalert2';
 import './PedidosVendedorPage.scss';
 
 const PedidosVendedorPage = () => {
@@ -32,22 +33,31 @@ const PedidosVendedorPage = () => {
         }
     }, [location.state]);
 
-    const handleEdit = (id) => {
-        alert(`📝 Mostrar JSON de pedido con ID: ${id}`);
-    };
-
     const handleDelete = async (id) => {
-        try {
-            await deletePedido(id);
-            setPedidos((prev) => prev.filter((p) => p._id !== id));
-        } catch (err) {
-            console.error('❌ Error al eliminar pedido:', err);
+        const confirm = await Swal.fire({
+            title: '¿Estás seguro?',
+            text: 'Esta acción eliminará el pedido permanentemente.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar',
+        });
+
+        if (confirm.isConfirmed) {
+            try {
+                await eliminarPedido(id);
+                setPedidos((prev) => prev.filter((p) => p._id !== id));
+                Swal.fire('Eliminado', 'El pedido fue eliminado correctamente.', 'success');
+            } catch (err) {
+                console.error('❌ Error al eliminar pedido:', err);
+                Swal.fire('Error', 'No se pudo eliminar el pedido', 'error');
+            }
         }
     };
 
     const handleView = (pedido) => {
         navigate('/pedidos/detalle', {
-            state: { pedido } // ✅ pasamos el objeto completo
+            state: { pedido }
         });
     };
 
@@ -73,7 +83,6 @@ const PedidosVendedorPage = () => {
                                 <p><strong>Estado:</strong> {pedido.estado}</p>
                                 <div className="btn-group">
                                     <Button className="info small" onClick={() => handleView(pedido)}>Ver</Button>
-                                    <Button className="secondary small" onClick={() => handleEdit(pedido._id)}>Editar</Button>
                                     <Button className="danger small" onClick={() => handleDelete(pedido._id)}>Eliminar</Button>
                                 </div>
                             </div>
