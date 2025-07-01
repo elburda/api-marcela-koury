@@ -1,0 +1,87 @@
+.vendedor-container {
+  max-width: 1900px;
+  margin: 50px;
+  padding: 2rem 1rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.vendedor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.vendedor-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #01C38E;
+  margin: 0;
+}
+
+.no-pedidos {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #777;
+}
+
+.pedido-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.pedido-card {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  word-wrap: break-word;
+}
+
+.pedido-card p {
+  margin: 0.4rem 0;
+  word-break: break-word;
+}
+
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  justify-content: flex-start;
+}
+
+/* Estilos SweetAlert2 */
+.swal2-popup {
+  border-radius: 1rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+  font-family: inherit;
+  padding: 2rem;
+}
+
+.swal2-title {
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.swal2-confirm, .swal2-cancel {
+  padding: 0.5rem 1.5rem;
+  font-size: 0.875rem;
+  border-radius: 0.5rem;
+}
+
+.swal2-confirm {
+  background-color: #01C38E;
+
+}
+
+.swal2-cancel {
+  background-color:#dc3545;
+}

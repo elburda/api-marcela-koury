@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>API BitGuard</title>
+<style>
+    body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f2f2f2;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    }
+
+    .container {
+    max-width: 800px;
+    margin: auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-top: 2rem;
+    }
+
+    h1, h2 {
+    text-align: center;
+    color: #2c3e50;
+    }
+
+    ul {
+    list-style: none;
+    padding-left: 0;
+    }
+
+    li {
+    margin: 0.5rem 0;
+    }
+
+    a {
+    color: #007acc;
+    text-decoration: none;
+    }
+
+    a:hover {
+    text-decoration: underline;
+    }
+
+    footer {
+    background-color: #111;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: auto;
+    }
+
+    footer p {
+    margin: 0.3rem 0;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>📘 API BitGuard</h1>
+    <p>Esta API permite gestionar artículos y usuarios de una tienda de lencería.</p>
+
+    <h2>🔗 Endpoints disponibles</h2>
+    <ul>
+    <li><strong>GET</strong> <a href="/articulos">/articulos</a> — Ver todos los artículos</li>
+    <li><strong>POST</strong> /articulos — Crear nuevo artículo</li>
+    <li><strong>GET</strong> /articulos/:id — Buscar artículo por ID</li>
+    <li><strong>GET</strong> <a href="/articulos/search/tags?tags=conjunto">/articulos/search/tags?tags=conjunto</a> — Buscar artículos por tags</li>
+    <li><strong>GET</strong> <a href="/pedidos">/pedidos</a> — Ver todos los pedidos</li>
+    <li><strong>POST</strong> /users — Crear nuevo usuario</li>
+    <li><strong>GET</strong> /users/:id — Buscar usuario por ID</li>
+    </ul>
+</div>
+
+<footer>
+    <p><strong>Nombre y Apellido:</strong> Nicolás Burda - Dario Burda</p>
+    <p><strong>Materia:</strong> Aplicaciones Híbridas</p>
+    <p><strong>Docente:</strong> Camila Galban</p>
+    <p><strong>Comisión:</strong> DWN4AP</p>
+</footer>
+
+</body>
+</html>
+

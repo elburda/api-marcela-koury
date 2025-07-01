@@ -1,0 +1,68 @@
+@use '../../styles/variables' as *;
+
+
+.custom-button {
+    padding: $input-padding;
+    background-color: $color-primary;
+    color: white;
+    border: none;
+    border-radius: $border-radius;
+    transition: background 0.3s ease;
+    font-weight: bold;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    // min-width: 100px;
+
+    &.small {
+        width: 15%;
+        font-size: 0.75rem;
+        padding: 0.4rem 0.75rem;
+    }
+
+    &.primary {
+        background-color: $color-primary;
+        color: white;
+
+        &:hover {
+        background-color: darken($color-primary, 10%);
+        }
+    }
+
+    &.secondary {
+        background-color: $color-secondary;
+        color: white;
+
+        &:hover {
+        background-color: darken($color-secondary, 10%);
+        }
+    }
+
+    &.info {
+        background-color: #17a2b8;
+        color: white;
+
+        &:hover {
+        background-color: darken(#17a2b8, 10%);
+        }
+    }
+
+    &.alert {
+        background-color: #ffc107;
+        color: #212529;
+
+        &:hover {
+        background-color: darken(#ffc107, 10%);
+        }
+    }
+
+    &.danger {
+        background-color: #dc3545;
+        color: white;
+
+        &:hover {
+        background-color: darken(#dc3545, 10%);
+        }
+    }
+
+
+}

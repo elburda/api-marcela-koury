@@ -1,0 +1,46 @@
+.detalle-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.detalle-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.detalle-info {
+    background: #f9f9f9;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.detalle-articulos {
+    margin-bottom: 2rem;
+
+    .detalle-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 0.75rem;
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .detalle-item-datos {
+        text-align: right;
+        min-width: 150px;
+    }
+}
+
+.detalle-total {
+    text-align: right;
+    font-size: 1.2rem;
+    font-weight: bold;
+}

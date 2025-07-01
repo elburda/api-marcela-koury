@@ -1,0 +1,62 @@
+.crear-articulo-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.titulo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.grid-doble {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+    .campo {
+    display: flex;
+    flex-direction: column;
+
+    label {
+        font-weight: 600;
+        margin-bottom: 0.4rem;
+    }
+
+    input,
+    textarea {
+        padding: 0.6rem 0.8rem;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 0.95rem;
+        width: 100%;
+    }
+
+    textarea {
+        resize: vertical;
+    }
+
+    .error {
+        color: #e74c3c;
+        font-size: 0.85rem;
+        margin-top: 0.3rem;
+    }
+}
+
+.boton {
+    align-self: flex-start;
+    margin-top: 1rem;
+}

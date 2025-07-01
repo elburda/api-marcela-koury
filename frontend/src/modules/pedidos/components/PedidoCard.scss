@@ -1,0 +1,63 @@
+.pedido-card {
+    flex: 1 1 280px;
+    max-width: 320px;
+    min-height: 250px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    word-wrap: break-word;
+
+    h5 {
+        margin-bottom: 0.5rem;
+    }
+
+    ul {
+        list-style: none;
+        padding-left: 0;
+        margin-top: 1rem;
+    }
+    
+    .btn-group {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    width: 100%;
+    }
+
+    .btn-group button {
+    flex: 1 1 0;
+    min-width: 0;
+    }
+
+
+    .pedido-item {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #eee;
+
+        .pedido-id {
+        color: #007bff;
+        text-decoration: underline;
+        cursor: pointer;
+        word-break: break-word;
+        }
+
+    }
+}
+.button.info {
+    background-color: #3B82F6;
+    color: white;
+
+    &:hover {
+        background-color: #2563EB;
+    }
+}
