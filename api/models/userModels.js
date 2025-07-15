@@ -6,7 +6,12 @@ const userSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true },
     username: { type: String },
     password: { type: String, required: true },
-    rol: { type: String, enum: ['admin', 'vendedor'], default: 'vendedor' }
+    rol: { type: String, enum: ['admin', 'vendedor'], default: 'vendedor' },
+    localAsignado: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Local',
+        default: null
+    }
 }, {
     timestamps: true
 });

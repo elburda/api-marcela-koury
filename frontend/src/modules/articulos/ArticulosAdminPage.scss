@@ -44,6 +44,19 @@
         }
 
         .crear-btn {
+            background-color: #01c38e;
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            font-size: 0.95rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+
+            &:hover {
+                background-color: #019e74;
+            }
+
             align-self: flex-start;
 
             @media (min-width: 640px) {
@@ -91,6 +104,76 @@
         .tag-cell {
             font-size: 0.85rem;
             color: #666;
+        }
+    }
+
+    .acciones-local {
+        display: flex;
+        justify-content: flex-start;
+        gap: 10px;
+
+        .btn-editar,
+        .btn-borrar {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: none;
+            border: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            padding: 0.3rem 0.5rem;
+        }
+
+        .btn-editar {
+            color: #007bff;
+
+            i {
+                font-size: 0.95rem;
+            }
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        .btn-borrar {
+            color: #dc3545;
+
+            i {
+                font-size: 0.95rem;
+            }
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .paginado {
+        margin-top: 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+
+        span {
+            font-size: 0.95rem;
+            color: #333;
+        }
+
+        .btn-paginado {
+            background-color: #01c38e;
+            color: white;
+            border: none;
+            padding: 0.4rem 1rem;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+
+            &:hover {
+                background-color: #019e74;
+            }
         }
     }
 

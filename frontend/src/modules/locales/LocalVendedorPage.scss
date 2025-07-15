@@ -1,0 +1,44 @@
+.local-vendedor-card {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border: 1px solid #01c38e;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.local-vendedor-card h2 {
+    color: #05a378;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.local-vendedor-card p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.btn-crear {
+    padding: 0.6rem 1.2rem;
+    background-color: #01c38e;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    transition: background-color 0.3s;
+}
+
+.btn-crear:hover {
+    background-color: #029f74;
+}
+
+.texto-cargando {
+    text-align: center;
+    color: #888;
+}

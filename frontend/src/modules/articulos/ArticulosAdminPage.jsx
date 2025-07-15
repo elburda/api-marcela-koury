@@ -1,9 +1,9 @@
+
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { getArticulos, deleteArticulo } from '../../services/articulosService';
 import { useAuth } from '../../context/AuthContext';
 import Nav from '../../components/Nav';
-import Button from '../../components/Button';
 import Swal from 'sweetalert2';
 import './ArticulosAdminPage.scss';
 
@@ -57,7 +57,7 @@ const ArticulosAdminPage = () => {
     };
 
     const handleEditar = (id) => {
-        navigate(`/articulos/editar/${id}`);
+    navigate(`/articulos/${id}/editar`);
     };
 
     const articulosFiltrados = articulos.filter((art) =>
@@ -82,9 +82,9 @@ const ArticulosAdminPage = () => {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 />
-                <Button className="primary crear-btn" onClick={() => navigate('/articulos/crear')}>
+                <button className="btn-crear" onClick={() => navigate('/articulos/crear')}>
                 Crear artículo
-                </Button>
+                </button>
             </div>
 
             {articulosFiltrados.length > 0 ? (
@@ -111,13 +111,13 @@ const ArticulosAdminPage = () => {
                         <td>{Array.isArray(art.tags) ? art.tags.join(', ') : ''}</td>
                         <td>{art.stock}</td>
                         <td>
-                            <div className="btn-group">
-                            <Button className="secondary small" onClick={() => handleEditar(art._id)}>
-                                Editar
-                            </Button>
-                            <Button className="danger small" onClick={() => handleEliminar(art._id)}>
-                                Eliminar
-                            </Button>
+                            <div className="acciones-local">
+                            <button className="btn-editar" onClick={() => handleEditar(art._id)}>
+                                <i className="fas fa-pen"></i> Editar
+                            </button>
+                            <button className="btn-borrar" onClick={() => handleEliminar(art._id)}>
+                                <i className="fas fa-trash-alt"></i> Borrar
+                            </button>
                             </div>
                         </td>
                         </tr>
@@ -127,11 +127,11 @@ const ArticulosAdminPage = () => {
 
                 <div className="paginado">
                     {paginaActual > 1 && (
-                    <Button className="secondary small" onClick={() => setPaginaActual(p => p - 1)}>Anterior</Button>
+                    <button className="btn-paginado" onClick={() => setPaginaActual(p => p - 1)}>Anterior</button>
                     )}
                     <span>Página {paginaActual} de {totalPaginas}</span>
                     {paginaActual < totalPaginas && (
-                    <Button className="secondary small" onClick={() => setPaginaActual(p => p + 1)}>Siguiente</Button>
+                    <button className="btn-paginado" onClick={() => setPaginaActual(p => p + 1)}>Siguiente</button>
                     )}
                 </div>
                 </>

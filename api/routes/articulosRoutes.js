@@ -1,14 +1,21 @@
-import express from "express"
-import { addArticulo, listArticulos, getArticuloById, searchByTag, updateArticulo, deleteArticulo} from "../controllers/articulosControllers.js";
-const articulosRouter = express.Router();
+import express from "express";
+import {
+    addArticulo,
+    listArticulos,
+    getArticuloById,
+    searchByTag,
+    updateArticulo,
+    deleteArticulo
+} from "../controllers/articulosControllers.js";
 
+const router = express.Router();
 
-articulosRouter.get('/', listArticulos)
-articulosRouter.post('/',addArticulo)
-articulosRouter.get('/search/tags',searchByTag)
-articulosRouter.get('/:id',getArticuloById)
-articulosRouter.put('/:id',updateArticulo)
-articulosRouter.delete('/:id', deleteArticulo)
+router.get('/', listArticulos);
+router.post('/', addArticulo);
+router.get('/search/tags', searchByTag);
+router.get('/:id', getArticuloById);
+router.put('/:id', updateArticulo);
+router.delete('/:id', deleteArticulo);
 
+export default router;
 
-export {articulosRouter};

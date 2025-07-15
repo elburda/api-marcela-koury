@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../../styles/variables' as *;
 
 
@@ -24,7 +25,7 @@
         color: white;
 
         &:hover {
-        background-color: darken($color-primary, 10%);
+        background-color: color.adjust($color-primary, $lightness: -10%);
         }
     }
 
@@ -33,7 +34,7 @@
         color: white;
 
         &:hover {
-        background-color: darken($color-secondary, 10%);
+        background-color: color.adjust($color-secondary, $lightness: -10%);
         }
     }
 
@@ -42,7 +43,7 @@
         color: white;
 
         &:hover {
-        background-color: darken(#17a2b8, 10%);
+        background-color: color.adjust(#17a2b8, $lightness: -10%);
         }
     }
 
@@ -51,7 +52,7 @@
         color: #212529;
 
         &:hover {
-        background-color: darken(#ffc107, 10%);
+        background-color: color.adjust(#ffc107, $lightness: -10%);
         }
     }
 
@@ -60,7 +61,7 @@
         color: white;
 
         &:hover {
-        background-color: darken(#dc3545, 10%);
+        background-color: color.adjust(#dc3545, $lightness: -10%);
         }
     }
 

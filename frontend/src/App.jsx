@@ -1,3 +1,5 @@
+
+import { useAuth } from './context/AuthContext';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from './modules/home/LoginPage';
 import PedidosAdminPage from './modules/pedidos/PedidosAdminPage';
@@ -6,12 +8,17 @@ import CrearPedidoPage from './modules/pedidos/CrearPedidoPage';
 import PedidoDetallePage from './modules/pedidos/PedidoDetallePage';
 import ArticulosAdminPage from './modules/articulos/ArticulosAdminPage';
 import CrearArticuloPage from './modules/articulos/CrearArticuloPage';
-import { useAuth } from './context/AuthContext';
 import EditarArticuloPage from './modules/articulos/EditarArticuloPage';
-
+import LocalesAdminPage from './modules/locales/LocalesAdminPage';
+import CrearLocalPage from './modules/locales/CrearLocalPage';
+import EditarLocalPage from './modules/locales/EditarLocalPage';
+import LocalVendedorPage from './modules/locales/LocalVendedorPage';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
+
+  if (loading) return <div>Cargando Sesión...</div>;
 
   return (
     <Routes>
@@ -20,55 +27,87 @@ function App() {
       <Route
         path="/pedidos/admin"
         element={
-          user?.rol === 'admin' ? <PedidosAdminPage /> : <Navigate to="/" />
+          <ProtectedRoute roles={['admin']}>
+            <PedidosAdminPage />
+          </ProtectedRoute>
         }
       />
       <Route
         path="/pedidos"
         element={
-          user?.rol === 'vendedor' ? <PedidosVendedorPage /> : <Navigate to="/" />
+          <ProtectedRoute roles={['vendedor']}>
+            <PedidosVendedorPage />
+          </ProtectedRoute>
         }
       />
       <Route
         path="/pedidos/crear"
         element={
-          user?.rol === 'vendedor' ? <CrearPedidoPage /> : <Navigate to="/" />
+          <ProtectedRoute roles={['vendedor']}>
+            <CrearPedidoPage />
+          </ProtectedRoute>
         }
       />
       <Route
-        path="/pedidos/detalle"
-        element={
-          user?.rol === 'vendedor' || user?.rol === 'admin'
-            ? <PedidoDetallePage />
-            : <Navigate to="/" />
-        }
+        path="/pedidos/:id"
+        element={user ? <PedidoDetallePage /> : <Navigate to="/" />}
       />
+
       <Route
         path="/articulos"
         element={
-          user?.rol === 'admin' ? <ArticulosAdminPage /> : <Navigate to="/" />
+          <ProtectedRoute roles={['admin']}>
+            <ArticulosAdminPage />
+          </ProtectedRoute>
         }
       />
       <Route
         path="/articulos/crear"
         element={
-          user?.rol === 'admin' ? <CrearArticuloPage /> : <Navigate to="/" />
+          <ProtectedRoute roles={['admin']}>
+            <CrearArticuloPage />
+          </ProtectedRoute>
         }
       />
       <Route
-        path="/articulos/editar/:id"
+        path="/articulos/:id/editar"
         element={
-          user?.rol === 'admin' ? <EditarArticuloPage /> : <Navigate to="/" />
+          <ProtectedRoute roles={['admin']}>
+            <EditarArticuloPage />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/locales"
+        element={
+          <ProtectedRoute roles={['admin']}>
+            <LocalesAdminPage />
+          </ProtectedRoute>
         }
       />
       <Route
-        path="*"
+        path="/locales/crear"
         element={
-          user?.rol === 'admin'
-            ? <Navigate to="/pedidos/admin" />
-            : user?.rol === 'vendedor'
-            ? <Navigate to="/pedidos" />
-            : <Navigate to="/" />
+          <ProtectedRoute roles={['admin']}>
+            <CrearLocalPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/locales/:id/editar"
+        element={
+          <ProtectedRoute roles={['admin']}>
+            <EditarLocalPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/locales/mi-local"
+        element={
+          <ProtectedRoute roles={['vendedor']}>
+            <LocalVendedorPage />
+          </ProtectedRoute>
         }
       />
     </Routes>
@@ -76,3 +115,4 @@ function App() {
 }
 
 export default App;
+

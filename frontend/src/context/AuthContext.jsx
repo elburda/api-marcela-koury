@@ -1,11 +1,13 @@
+
 import { createContext, useContext, useState, useEffect } from 'react';
 import { loginUser as apiLoginUser } from '../services/authService';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(undefined); // undefined para control de carga
+  const [user, setUser] = useState(undefined);
   const [token, setToken] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
@@ -17,14 +19,27 @@ export const AuthProvider = ({ children }) => {
     } else {
       setUser(null);
     }
+
+    setLoading(false);
   }, []);
 
   const login = async (email, password) => {
     const res = await apiLoginUser(email, password);
-    setUser(res.user);
+
+    const plainUser = {
+      id: res.user._id,
+      nombre: res.user.nombre,
+      apellido: res.user.apellido,
+      email: res.user.email,
+      rol: res.user.rol
+    };
+
+    setUser(plainUser);
     setToken(res.token);
-    localStorage.setItem('user', JSON.stringify(res.user));
+
+    localStorage.setItem('user', JSON.stringify(plainUser));
     localStorage.setItem('token', res.token);
+
     return res;
   };
 
@@ -36,7 +51,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, token, login, logout }}>
+    <AuthContext.Provider value={{ user, token, login, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );

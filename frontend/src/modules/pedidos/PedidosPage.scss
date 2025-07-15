@@ -1,24 +1,117 @@
 .pedidos-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-    overflow-x: hidden;
+    max-width: 1300px;
+    margin: 2rem auto;
+    padding: 1rem;
 }
 
 .titulo-pedidos {
     text-align: center;
+    font-size: 1.8rem;
+    color: #333;
     margin-bottom: 2rem;
+}
+
+.tabla-wrapper {
+    overflow-x: auto;
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 1rem;
+}
+
+.tabla-pedidos {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla-pedidos thead {
+    background-color: #f2f2f2;
+}
+
+.tabla-pedidos th,
+.tabla-pedidos td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    word-break: break-word;
+}
+
+.tabla-pedidos th {
     font-weight: bold;
 }
 
-.cards-container {
+.acciones {
     display: flex;
+    gap: 0.5rem;
     flex-wrap: wrap;
-    gap: 1.5rem;
-    justify-content: center;
-    width: 100%;
-    margin-top: 2rem;
+}
+
+.btn-ver {
+
+    color: white;
+    border: none;
+    padding: 0.4rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.btn-eliminar {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.4rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
 }
 
 
 
+.btn-eliminar:hover {
+    background-color: #c82333;
+}
+
+.acciones {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+
+    .btn-ver,
+    .btn-eliminar {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: none;
+        border: none;
+        font-size: 0.9rem;
+        cursor: pointer;
+        padding: 0.3rem 0.5rem;
+    }
+
+    .btn-ver {
+        color: #007bff;
+
+        i {
+        font-size: 0.95rem;
+        }
+
+        &:hover {
+        text-decoration: underline;
+        }
+    }
+
+    .btn-eliminar {
+        color: #dc3545;
+
+        i {
+        font-size: 0.95rem;
+        }
+
+        &:hover {
+        text-decoration: underline;
+        }
+    }
+}
+
+.fila-alterna {
+    background-color: #f9f9f9;
+}

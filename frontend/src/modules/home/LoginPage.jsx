@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import './LoginStyles.scss';
 import LoginForm from './components/LoginForm';
@@ -17,33 +18,38 @@ const LoginPage = () => {
 
     const handleLogin = async (email, password) => {
         try {
-        const res = await login(email, password);
-        const { user } = res;
+            const res = await login(email, password);
+            const { user } = res;
 
-        const toastData = {
-            message: '✅ Inicio de sesión exitoso',
-            state: 'success',
-            position: 'top-right',
-        };
+            const toastData = {
+                message: '✅ Inicio de sesión exitoso',
+                state: 'success',
+                position: 'top-right',
+            };
 
-        if (user.rol === 'admin') {
-            navigate('/pedidos/admin', { state: { toast: toastData } });
-        } else if (user.rol === 'vendedor') {
-            navigate('/pedidos', { state: { toast: toastData } });
-        } else {
-            showToast('Rol no permitido', 'danger');
-        }
+            if (user.rol === 'admin') {
+                navigate('/pedidos/admin', { state: { toast: toastData } });
+            } else if (user.rol === 'vendedor') {
+                navigate('/pedidos', { state: { toast: toastData } });
+            } else {
+                showToast('Rol no permitido', 'danger');
+            }
         } catch (error) {
-        console.error('Error de login:', error);
-        showToast('❌ Credenciales incorrectas o error de conexión');
+            console.error('Error de login:', error);
+            showToast('❌ Credenciales incorrectas o error de conexión');
         }
     };
 
     return (
-        <div className="card">
-        <h1 className="title">Iniciar Sesión</h1>
-        {toast && <Toast {...toast} />}
-        <LoginForm onLogin={handleLogin} />
+        <div className="login-container">
+            <div className="login-left">
+                <div className="card">
+                    <h1 className="title">Iniciar Sesión</h1>
+                    {toast && <Toast {...toast} />}
+                    <LoginForm onLogin={handleLogin} />
+                </div>
+            </div>
+            <div className="login-right" />
         </div>
     );
 };

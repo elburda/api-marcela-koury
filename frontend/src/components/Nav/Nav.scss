@@ -1,10 +1,11 @@
 .nav-bar {
-    background-color: #01c38e;
-    padding: 1rem 2rem;
+    background-color: #474747;
+    padding: 0.0rem 1rem;
+    height: 85px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 .nav-links {
@@ -14,23 +15,53 @@
     padding: 0;
     margin: 0;
 }
+.nav-logo img {
+    height: 120px;
+    width: auto;
+    margin-right: 1.5rem;
+}
 
-.nav-links a {
+
+.logout-button-icon {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.nav-links a,
+.nav-links button {
+    border-radius: 0;
+    background-color: transparent;
     text-decoration: none;
     color: #fff;
     font-weight: bold;
-    transition: color 0.3s;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.3rem 0;
+    line-height: 1.5;
+    display: inline-block;
+    transition: border-bottom 0.3s, color 0.3s;
+    vertical-align: middle;
 }
 
-.nav-links a.active {
+
+.nav-links a.active,
+.nav-links button.active {
     border-bottom: 2px solid #fff;
+}
+
+.nav-links a:hover,
+.nav-links button:hover {
+    color: #d0f7ec;
 }
 
 .user-actions {
     display: flex;
     gap: 1rem;
     align-items: center;
-    margin-top: 0.5rem;
 }
 
 .user-name {

@@ -12,6 +12,7 @@ import './components/ArticuloCard.scss';
 
 const CrearPedidoPage = () => {
     const { user } = useAuth();
+    console.log("🟢 user desde AuthContext:", user);
     const navigate = useNavigate();
     const [articulos, setArticulos] = useState([]);
     const [search, setSearch] = useState('');
@@ -152,8 +153,8 @@ const CrearPedidoPage = () => {
                 <div className="pedido-header">
                 <h2>Nuevo Pedido</h2>
                 <Button className="primary" onClick={handleCrearPedido}>Crear Pedido</Button>
-                <p><strong>Vendedor:</strong> {user?.nombre}</p>
-                <p><strong>Fecha:</strong> {fechaActual}</p>
+                <p><strong>Vendedor:</strong> {user?.email || 'Cargando...'}</p>
+                <p><strong>Fecha:</strong> {new Date().toLocaleString()}</p>
                 </div>
 
                 <div className="lista-pedido">

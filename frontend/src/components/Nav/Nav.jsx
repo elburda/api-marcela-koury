@@ -1,19 +1,21 @@
-// import React from 'react';
+
 import './Nav.scss';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 const Nav = () => {
     const { user, logout } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handleLogout = () => {
         logout();
         navigate('/');
     };
 
-    const handlePedidosClick = (e) => {
-        e.preventDefault();
+    const handlePedidosClick = () => {
         if (user?.rol === 'admin') {
             navigate('/pedidos/admin');
         } else if (user?.rol === 'vendedor') {
@@ -23,33 +25,54 @@ const Nav = () => {
         }
     };
 
+    const isActivePedidos =
+        (user?.rol === 'admin' && location.pathname === '/pedidos/admin') ||
+        (user?.rol === 'vendedor' && location.pathname === '/pedidos');
+
     return (
         <nav className="nav-bar">
+            <div className="nav-logo">
+                <img src="/Logo.png" alt="Logo" />
+            </div>
+
             <ul className="nav-links">
                 <li>
-                    <a
-                        href="#"
-                        className={({ isActive }) => isActive ? 'active' : ''}
+                    <button
+                        className={isActivePedidos ? 'active nav-button' : 'nav-button'}
                         onClick={handlePedidosClick}
                     >
                         Pedidos
-                    </a>
+                    </button>
                 </li>
 
-                {/* Mostrar "Artículos" solo si el usuario es admin */}
                 {user?.rol === 'admin' && (
-                    <li>
-                        <NavLink to="/articulos" className={({ isActive }) => isActive ? 'active' : ''}>
-                            Artículos
-                        </NavLink>
-                    </li>
+                    <>
+                        <li>
+                            <NavLink
+                                to="/articulos"
+                                className={({ isActive }) => (isActive ? 'active' : '')}
+                            >
+                                Artículos
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                to="/locales"
+                                className={({ isActive }) => (isActive ? 'active' : '')}
+                            >
+                                Local
+                            </NavLink>
+                        </li>
+                    </>
                 )}
 
-                {/* Mostrar "Crear Artículo" solo si el usuario es admin */}
-                {user?.rol === 'admin' && (
+                {user?.rol === 'vendedor' && (
                     <li>
-                        <NavLink to="/articulos/crear" className={({ isActive }) => isActive ? 'active' : ''}>
-                            Crear Artículo
+                        <NavLink
+                            to="/locales/mi-local"
+                            className={({ isActive }) => (isActive ? 'active' : '')}
+                        >
+                            Local
                         </NavLink>
                     </li>
                 )}
@@ -57,7 +80,9 @@ const Nav = () => {
 
             <div className="user-actions">
                 {user?.nombre && <span className="user-name">{user.nombre}</span>}
-                <button onClick={handleLogout} className="logout-button">Cerrar sesión</button>
+                <button onClick={handleLogout} className="logout-button-icon" title="Cerrar sesión">
+                    <FontAwesomeIcon icon={faRightFromBracket} />
+                </button>
             </div>
         </nav>
     );

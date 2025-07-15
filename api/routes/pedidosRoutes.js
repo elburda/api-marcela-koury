@@ -1,26 +1,30 @@
+
 import express from "express";
 import {
   crearPedido,
-  getPedidosVendedor,
-  actualizarEstado,
+  obtenerMisPedidos,
   eliminarPedido,
-  getPedidosPorVendedor,
-  getPedidoById
+  obtenerPedidosPorVendedor,
+  obtenerPedidoPorId,
+  actualizarPedido,
+  actualizarEstadoPedido
 } from "../controllers/pedidosControllers.js";
+
 import { authenticateJWT } from "../middleware/authenticateJWt.js";
 import { verificarRol } from "../middleware/verificarRol.js";
 
-
-
-
-
 const router = express.Router();
 
+// Rutas específicas primero
 router.post("/", authenticateJWT, verificarRol(["vendedor"]), crearPedido);
-router.get("/", authenticateJWT, verificarRol(["vendedor"]), getPedidosVendedor);
-router.put("/:id", authenticateJWT, verificarRol(["vendedor"]), actualizarEstado);
-router.delete("/:id", authenticateJWT, verificarRol(["vendedor"]), eliminarPedido);
-router.get("/admin", authenticateJWT, verificarRol(["admin"]), getPedidosPorVendedor);
-router.get("/:id", authenticateJWT, verificarRol(["admin", "vendedor"]), getPedidoById);
+router.get("/admin", authenticateJWT, verificarRol(["admin"]), obtenerPedidosPorVendedor);
+
+// Rutas que usan :id deben ir después de las rutas fijas como /admin
+router.get("/", authenticateJWT, verificarRol(["vendedor"]), obtenerMisPedidos);
+router.put("/:id/estado", authenticateJWT, verificarRol(["vendedor", "admin"]), actualizarEstadoPedido);
+router.put("/:id", authenticateJWT, verificarRol(["vendedor", "admin"]), actualizarPedido);
+router.delete("/:id", authenticateJWT, verificarRol(["admin", "vendedor"]), eliminarPedido);
+router.get("/:id", authenticateJWT, verificarRol(["admin", "vendedor"]), obtenerPedidoPorId);
 
 export default router;
+
